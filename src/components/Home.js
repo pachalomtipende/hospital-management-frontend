@@ -6,6 +6,7 @@ import { Activity } from "lucide-react";
 import { Stethoscope} from "lucide-react";
 import { Users, ShieldCheck, CalendarCheck, Clock,Bell } from "lucide-react";
 import { Shield, Plus } from "lucide-react";
+import {Link} from "react-router-dom";
 
 
 
@@ -25,12 +26,21 @@ function Home() {
                 <button className={"nav-button"} onClick={()=>{
                     setNavB(false);
                 }}>Log in</button>
-                <button className={"nav-button"} style={{left:'1000px'}} onClick={()=>{
-                    setNavB(true);
-                }}>Get Started</button>
+
+                <Link to={"/patientRegister"}>
+                    <button className={"nav-button"} style={{left:'1000px'}} onClick={()=>{
+                        setNavB(true);
+                    }}>Get Started</button>
+
+                </Link>
+
 
                 {navB ? (
-                    <button className={"nav-button"} style={{left:'1000px',backgroundColor:'#3B82F6',color:'white'}}>Get Started</button>
+                    <Link to={"/patientRegister"}>
+                        <button className={"nav-button"} style={{left:'1000px',backgroundColor:'#3B82F6',color:'white'}}>Get Started</button>
+
+                    </Link>
+
 
                 ):(
                     <button className={"nav-button"} style={{ backgroundColor:'#3B82F6',color:'white'}}>Log in</button>
@@ -55,11 +65,20 @@ function Home() {
                         manage your health records, and book appointments instantly from
                         any device.
                     </p>
-                    <button className={"box-button"} onClick={()=>{ setNavB(true)}}>Get Started</button>
+                    <Link to={"/patientRegister"}>
+                        <button className={"box-button"} onClick={()=>{ setNavB(true)}}>Get Started</button>
+
+                    </Link>
+
                     <button className={"box-button"} style={{marginLeft:'200px'}} onClick={()=>{setNavB(false)}}>Existing Patient Login</button>
 
                     {navB ? (
-                        <button className={"box-button"} style={{backgroundColor:'#3B82F6',color:'white'}}>Get Started</button>
+
+                        <Link to={"/patientRegister"}>
+                            <button className={"box-button"} style={{backgroundColor:'#3B82F6',color:'white'}}>Get Started</button>
+
+                        </Link>
+
 
                     ):(
                         <button className={"box-button"} style={{marginLeft:'200px',backgroundColor:'#3B82F6',color:'white'}}>Existing Patient Login</button>
