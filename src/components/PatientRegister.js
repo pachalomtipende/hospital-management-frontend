@@ -6,6 +6,47 @@ import { Calendar, Stethoscope, ShieldCheck } from "lucide-react";
 
 function PatientRegister(){
     const [navB  ,setNavB  ] = useState(true);
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [dateOfBirth, setDateOfBirth] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
+
+    const create = async()=>{
+        const response = await fetch("http://localhost:3000/api/create",{
+            method: "POST",
+            headers:{"Content-Type": "application/json"},
+            body: JSON.stringify({
+                patient: {
+                    first_name: firstName,
+                    last_name: lastName,
+                    email: email,
+                    phone: phone,
+                    date_of_birth: dateOfBirth,
+                    password: password,
+                    password_confirmation: passwordConfirmation
+                }
+
+            })
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        setFirstName("")
+        setLastName("")
+        setEmail("")
+        setPhone("")
+        setDateOfBirth("")
+        setPassword("")
+        setPasswordConfirmation("")
+        setPasswordConfirmation("")
+    }
+
+
     return (
         <div>
             <div className="box1">
@@ -124,28 +165,28 @@ function PatientRegister(){
                         <div className={"pname"}>
                             <p style={{position:"relative",bottom:"14px"}}>First Name</p>
                             <p style={{position:"relative",bottom:"40px",left:"190px"}}>Last Name</p>
-                            <input type={"text"} className={"fname"}/>
-                            <input className={"lname"} type={"text"}></input>
+                            <input type={"text"} className={"fname"} value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                            <input className={"lname"} type={"text"} value={lastName} onChange={(e)=>{setLastName(e.target.value)}}></input>
 
                         </div>
                         <div className={"pname" } style={{position:"absolute",top:"121px"}}>
                             <p style={{position:"relative",bottom:"14px"}}>Email</p>
-                            <input className={"fname"} type={"text"} style={{position:"relative",bottom:"20px",width:"345px"}}/>
+                            <input className={"fname"} type={"text"} style={{position:"relative",bottom:"20px",width:"345px"}} value={email} onChange={(e) => setEmail(e.target.value)}/>
 
                         </div>
 
                         <div className={"pname" } style={{position:"absolute",top:"190px"}}h>
                             <p style={{position:"relative",bottom:"14px"}}>Password</p>
                             <p style={{position:"relative",bottom:"40px",left:"190px"}}>Confim</p>
-                            <input type={"password"} className={"fname"}/>
-                            <input className={"lname"} type={"password"}></input>
+                            <input type={"password"} className={"fname"} value={password} onChange={(e) => setPassword(e.target.value)}/>
+                            <input className={"lname"} type={"password"} value={passwordConfirmation} onChange={(e)=>{setPasswordConfirmation(e.target.value)}}></input>
 
                         </div>
                         <div className={"pname" } style={{position:"absolute",top:"259px"}}h>
                             <p style={{position:"relative",bottom:"14px"}}>Phone Number</p>
                             <p style={{position:"relative",bottom:"40px",left:"190px"}}>Date Of Birth</p>
-                            <input type={"type"} className={"fname"}/>
-                            <input className={"lname"} type={"type"}></input>
+                            <input type={"type"} className={"fname"} value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                            <input className={"lname"} type={"date"} value={dateOfBirth} onChange={(e)=>{setDateOfBirth(e.target.value)}}></input>
 
                         </div>
                         <input type={"checkbox"} style={{position:"absolute",top:"320px",cursor:"pointer"}}/>
@@ -159,7 +200,7 @@ function PatientRegister(){
                             }}>I agree to the Terms of Services and Privacy Policy</p>
                         </div>
 
-                        <button className={"join-btn"}>joincareConnect</button>
+                        <button className={"join-btn"} onClick={create}>joincareConnect</button>
 
                         <div className={"box25"}>
                             <p>ALREADY HAVE AN ACCOUNT</p>
