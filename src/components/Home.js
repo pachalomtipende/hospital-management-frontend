@@ -13,6 +13,11 @@ import {Link} from "react-router-dom";
 
 function Home() {
     const [navB  ,setNavB  ] = useState(true);
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
     return (
         <div>
             <div className="box1">
@@ -23,9 +28,14 @@ function Home() {
                     <h1>CareConnect</h1>
                 </div>
                 <button className={"home-button"}>Home</button>
-                <button className={"nav-button"} onClick={()=>{
-                    setNavB(false);
-                }}>Log in</button>
+
+                <Link to={"/patientLogin"}>
+                    <button className={"nav-button"} onClick={()=>{
+                        setNavB(false);
+                    }}>Log in</button>
+
+                </Link>
+
 
                 <Link to={"/patientRegister"}>
                     <button className={"nav-button"} style={{left:'1000px'}} onClick={()=>{
@@ -43,7 +53,13 @@ function Home() {
 
 
                 ):(
-                    <button className={"nav-button"} style={{ backgroundColor:'#3B82F6',color:'white'}}>Log in</button>
+
+
+                    <Link to={"/patientLogin"}>
+                        <button className={"nav-button"} style={{ backgroundColor:'#3B82F6',color:'white'}}>Log in</button>
+
+                    </Link>
+
                 )}
 
             </div>
@@ -70,7 +86,13 @@ function Home() {
 
                     </Link>
 
-                    <button className={"box-button"} style={{marginLeft:'200px'}} onClick={()=>{setNavB(false)}}>Existing Patient Login</button>
+
+                    <Link to={"/patientLogin"}>
+                        <button className={"box-button"} style={{marginLeft:'200px'}} onClick={()=>{setNavB(false)}}>Existing Patient Login</button>
+
+                    </Link>
+
+
 
                     {navB ? (
 
@@ -81,7 +103,12 @@ function Home() {
 
 
                     ):(
-                        <button className={"box-button"} style={{marginLeft:'200px',backgroundColor:'#3B82F6',color:'white'}}>Existing Patient Login</button>
+
+                        <Link to={"/patientLogin"}>
+                            <button className={"box-button"} style={{marginLeft:'200px',backgroundColor:'#3B82F6',color:'white'}}>Existing Patient Login</button>
+
+                        </Link>
+
 
                     )}
 

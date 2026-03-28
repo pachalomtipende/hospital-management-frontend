@@ -5,6 +5,11 @@ import { Calendar, Stethoscope, ShieldCheck } from "lucide-react";
 
 
 function PatientRegister(){
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
     const [navB  ,setNavB  ] = useState(true);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -20,6 +25,9 @@ function PatientRegister(){
 
 
     const create = async()=>{
+
+        setVerifyEmail("Sending verification code...");
+
         const response = await fetch("http://localhost:3000/api/create",{
             method: "POST",
             headers:{"Content-Type": "application/json"},
@@ -40,14 +48,13 @@ function PatientRegister(){
         const data = await response.json();
         setVerifyEmail(data.message)
 
-
         setFirstName("")
         setLastName("")
         setPhone("")
         setDateOfBirth("")
         setPassword("")
         setPasswordConfirmation("")
-        setPasswordConfirmation("")
+
     }
 
     const verify = async()=>{
@@ -86,9 +93,14 @@ function PatientRegister(){
 
                 </Link>
 
-                <button className={"nav-button"} onClick={()=>{
-                    setNavB(false);
-                }}>Log in</button>
+                <Link to={"/patientLogin"}>
+                    <button className={"nav-button"} onClick={()=>{
+                        setNavB(false);
+                    }}>Log in</button>
+
+
+                </Link>
+
 
                 <Link to={"/patientRegister"}>
                     <button className={"nav-button"} style={{left:'1000px'}} onClick={()=>{
@@ -106,7 +118,11 @@ function PatientRegister(){
 
 
                 ):(
-                    <button className={"nav-button"} style={{ backgroundColor:'#3B82F6',color:'white'}}>Log in</button>
+
+                    <Link to={"/patientLogin"}>
+                        <button className={"nav-button"} style={{ backgroundColor:'#3B82F6',color:'white'}}>Log in</button>
+                    </Link>
+
                 )}
 
             </div>
@@ -170,6 +186,11 @@ function PatientRegister(){
 
                         </div>
                         <div className={"box22"}>
+                            <div className="profile-icons">
+                                <img src="/images/patient1.jpg" alt="Patient 1" />
+                                <img src="/images/patient2.jpg" alt="Patient 2" />
+                                <img src="/images/patient3.jpg" alt="Patient 3" />
+                            </div>
                             <p>trusted by 5+ patients in malawi</p>
 
 
@@ -228,7 +249,12 @@ function PatientRegister(){
 
                         <div className={"box25"}>
                             <p>ALREADY HAVE AN ACCOUNT</p>
-                            <button className={"login-btn"}>Log in to your account</button>
+
+                            <Link to="/patientLogin">
+                                <button className={"login-btn"}>Log in to your account</button>
+
+                            </Link>
+
 
                         </div>
 
@@ -290,7 +316,7 @@ function PatientRegister(){
 
                     }}  maxlength="6" inputMode={"numeric"} pattern={"\d{6}"} placeholder={"Enter 6 - digit code"} value={confirmationCode}
                     onChange={(e) => setConfirmationCode(e.target.value)}/>
-                    <p style={{position:"absolute",bottom:"500px",fontFamily: "sans-serif"}}> The code expires in 15 mins</p>
+                    <p style={{position:"absolute",bottom:"500px",fontFamily: "sans-serif"}}> The code expires in 15 minutes</p>
 
                     <button style={{
                         position:"absolute",
