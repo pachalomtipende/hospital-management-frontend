@@ -13,6 +13,10 @@ function PatientRegister(){
     const [dateOfBirth, setDateOfBirth] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+    const [verifyEmail, setVerifyEmail] = useState();
+    const[confirmationCode, setConfirmationCode] = useState("");
+
+
 
 
     const create = async()=>{
@@ -34,16 +38,36 @@ function PatientRegister(){
         });
 
         const data = await response.json();
-        console.log(data);
+        setVerifyEmail(data.message)
+
 
         setFirstName("")
         setLastName("")
-        setEmail("")
         setPhone("")
         setDateOfBirth("")
         setPassword("")
         setPasswordConfirmation("")
         setPasswordConfirmation("")
+    }
+
+    const verify = async()=>{
+        const response = await fetch("http://localhost:3000/api/verify",{
+            method: "POST",
+            headers:{"Content-Type": "application/json"},
+            body: JSON.stringify({
+                patient: {
+                    confirmation_code: confirmationCode,
+                    email: email,
+                }
+            })
+        })
+        const data = await response.json();
+        alert(data.message)
+        if(data.errors){
+            alert(data.errors)
+        }
+        console.log("EMAIL:", email);
+        console.log("CODE:", confirmationCode);
     }
 
 
@@ -250,6 +274,46 @@ function PatientRegister(){
                 <p>2026 @PMT.All rights reserved</p>
 
             </div>
+            {verifyEmail && (
+                <div className={"box16"} style={{position:"absolute",background:"white"}}>
+                    <h2 style={{position:"absolute", bottom:"650px",fontFamily: "sans-serif"}}> {verifyEmail}</h2>
+                    <input type={"text"} style={{height:"50px",width:"400px",position:"absolute",
+                        bottom:"560px",boxShadow:" 0px 0px 3px rgba(0, 0, 0, 2)",
+                        border:"1px solid transparent",
+                        outline:"none",
+                        fontSize: "20px",
+                        fontWeight: "lighter",
+                        padding: "10px",
+                        borderRadius: "5px",
+                        textAlign:"center",
+                        fontFamily: "sans-serif",
+
+                    }}  maxlength="6" inputMode={"numeric"} pattern={"\d{6}"} placeholder={"Enter 6 - digit code"} value={confirmationCode}
+                    onChange={(e) => setConfirmationCode(e.target.value)}/>
+                    <p style={{position:"absolute",bottom:"500px",fontFamily: "sans-serif"}}> The code expires in 15 mins</p>
+
+                    <button style={{
+                        position:"absolute",
+                        bottom:"430px",
+                        background:"#3B82F6",
+                        color:"white",
+                        width:"200px",
+                        border:"1px solid transparent",
+                        outline:"none",
+                        fontSize: "14px",
+                        fontWeight: "bold",
+                        padding: "10px",
+                        borderRadius: "5px",
+                        textAlign:"center",
+                        fontFamily: "sans-serif",
+                        cursor:"pointer",
+
+
+                    }} onClick={verify}>Confirm code</button>
+
+                </div>
+            )}
+
 
 
         </div>
