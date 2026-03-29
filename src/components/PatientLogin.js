@@ -49,8 +49,91 @@ function PatientLogin() {
                 )}
 
             </div>
-            <div className="box16"></div>
-            <div className={'box13'} style={{marginTop:"820px"}}>
+            <div className="box16">
+                <div className={"box17"} style={{height:"450px", bottom:"170px" ,width:"700px"}}>
+                    <img src="/images/log.jpeg" alt="Patient 1"  style={{width:'100%',height:'450px',boxShadow:"0px 0px 15px rgba(0, 0, 0, 0.08)"}}/>
+                </div>
+                <div className={"box17"} style={{bottom:"170px",height:"450px" ,width:"600px",boxShadow:"none"}}>
+                    <div className={"box26"} style={{
+                        height:"415px",
+
+                        width:'400px',
+                        position:"absolute",
+                        left:"90px",
+                        top:"30px"
+                    }}>
+                        <h2> Welcome Back</h2>
+                        <p> Enter your credentials to access your patient portal</p>
+                        <div className={"box27"}>
+                            <p>Email Address</p>
+                            <input type={"text"} className={"email-input"}/>
+                        </div>
+                        <div className={"box27"}>
+                            <p>Password</p>
+                            <p style={{
+                                position:"absolute",
+                                top:"140px",
+                                left:"290px",
+                                color:"#3B82F6",
+                                cursor:"pointer"
+                            }
+                            }> Forget password</p>
+                            <input type={"password"} className={"email-input"}/>
+                        </div>
+                         <button className={"login-dash"} >
+                             Login to Dashboard
+                         </button>
+                        <div style={{
+                            position:"relative",
+                            width:"100%",
+                            height:"30px",
+                            top:"30px",
+                            border:"1px solid #6B7280",
+                            borderBottom:"none",
+                            borderLeft:"none",
+                            borderRight:"none"
+
+
+
+                        }}>
+                            <p style={{
+                                position:"relative",
+                                top:"-5px",
+                                fontSize:"10px",
+                                fontWeight:"bold",
+                            }}> NEW TO CARECONNECT</p>
+
+                        </div>
+                        <button className={"login-dash"} style={{
+                            top:"30px",
+                            backgroundColor:'transparent',
+                            border: "none",
+                            color:"#1F2937",
+                        }} >
+                            Create Patient Account
+                        </button>
+
+                        <button className={"login-dash"} style={{
+                            top:"50px",
+                            backgroundColor:'#3B82F6',
+                            border: "none",
+                            color:"white",
+                        }} >
+                            Staff Login
+                        </button>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+
+            </div>
+            <div className={'box13'} style={{marginTop:"490px"}}>
                 <div className={"box14"}>
                     <div className="logo" style={{position:"relative",right:"80px",}}>
                         <div className="icon">
@@ -81,7 +164,7 @@ function PatientLogin() {
                 </div>
 
             </div>
-            <div className={'box15'} style={{top:"1099px",left:"10px"}}>
+            <div className={'box15'} style={{top:"770px",left:"10px"}}>
                 <p>2026 @PMT.All rights reserved</p>
 
             </div>

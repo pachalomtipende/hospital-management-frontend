@@ -237,7 +237,7 @@ function Home() {
 
             </div>
 
-            <div className={'box13'}>
+            <div className={'box13'} style={{top:'490px'}}>
                 <div className={"box14"}>
                     <div className="logo" style={{position:"relative",right:"80px",}}>
                         <div className="icon">
@@ -268,7 +268,7 @@ function Home() {
                 </div>
 
             </div>
-            <div className={'box15'}>
+            <div className={'box15'} style={{top:"2005px"}}>
                 <p>2026 @PMT.All rights reserved</p>
 
             </div>
