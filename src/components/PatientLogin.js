@@ -10,6 +10,34 @@ function PatientLogin() {
     });
 
     const [navB  ,setNavB  ] = useState(false);
+    const [password,setPassword] = useState("")
+    const [email,setEmail] = useState("")
+
+
+
+    const LogIn = async () => {
+        const response = await fetch("http://localhost:3000/api/login",{
+            method: "POST",
+            headers:{"Content-Type": "application/json"},
+            body: JSON.stringify({
+                 patient : {
+                     email: email,
+                     password: password,
+                 }
+
+            })
+
+        });
+        const data = await response.json()
+        alert(data.message)
+        if(data.error){
+            alert(data.error)
+
+        }
+
+    }
+
+
     return (
         <div>
             <div className="box1">
@@ -66,7 +94,8 @@ function PatientLogin() {
                         <p> Enter your credentials to access your patient portal</p>
                         <div className={"box27"}>
                             <p>Email Address</p>
-                            <input type={"text"} className={"email-input"}/>
+                            <input type={"text"} className={"email-input"}
+                                   value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div className={"box27"}>
                             <p>Password</p>
@@ -78,9 +107,10 @@ function PatientLogin() {
                                 cursor:"pointer"
                             }
                             }> Forget password</p>
-                            <input type={"password"} className={"email-input"}/>
+                            <input type={"password"} className={"email-input"}
+                                   value={password} onChange={(e) => setPassword(e.target.value)}/>
                         </div>
-                         <button className={"login-dash"} >
+                         <button className={"login-dash"} onClick={LogIn} >
                              Login to Dashboard
                          </button>
                         <div style={{
@@ -104,20 +134,24 @@ function PatientLogin() {
                             }}> NEW TO CARECONNECT</p>
 
                         </div>
-                        <button className={"login-dash"} style={{
-                            top:"30px",
-                            backgroundColor:'transparent',
-                            border: "none",
-                            color:"#1F2937",
-                        }} >
-                            Create Patient Account
-                        </button>
+                        <Link to={"/patientRegister"}>
+                            <button className={"login-dash"} style={{
+                                top:"30px",
+                                backgroundColor:'transparent',
+                                border: "none",
+                                color:"#1F2937"
+                            }} >
+                                Create Patient Account
+                            </button>
+                        </Link>
+
 
                         <button className={"login-dash"} style={{
                             top:"50px",
                             backgroundColor:'#3B82F6',
                             border: "none",
                             color:"white",
+
                         }} >
                             Staff Login
                         </button>
