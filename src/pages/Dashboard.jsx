@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 
 // ── Icons ──────────────────────────────────────────────────────────────────────
@@ -133,11 +134,15 @@ function TopBar() {
 
 // ── Main Dashboard ─────────────────────────────────────────────────────────────
 export default function Dashboard() {
+  const navigate = useNavigate();
 
   const handleEnter = (id) => {
-    // TODO: replace with React Router navigation, e.g.:
-    // navigate(`/${id}/login`);
-    alert(`Redirecting to ${id} login page…`);
+    if (id === 'receptionist') {
+      navigate('/receptionist-login');
+    } else {
+      // TODO: handle other portals
+      alert(`Redirecting to ${id} login page…`);
+    }
   };
 
   return (
