@@ -144,23 +144,18 @@ function PatientLogin() {
                                 Create Patient Account
                             </button>
                         </Link>
+                        <Link to={"/staffPortal"}>
+                            <button className={"login-dash"} style={{
+                                top:"50px",
+                                backgroundColor:'#3B82F6',
+                                border: "none",
+                                color:"white",
 
+                            }} >
+                                Staff Login
+                            </button>
 
-                        <button className={"login-dash"} style={{
-                            top:"50px",
-                            backgroundColor:'#3B82F6',
-                            border: "none",
-                            color:"white",
-
-                        }} >
-                            Staff Login
-                        </button>
-
-
-
-
-
-
+                        </Link>
 
                     </div>
                 </div>

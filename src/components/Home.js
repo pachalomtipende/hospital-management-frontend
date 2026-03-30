@@ -219,18 +219,38 @@ function Home() {
                 <h2> Ready to take control of your healthy</h2>
                 <p>Be one of patients who trust careConnect for their medical needs.
                     <br/>Registration is free and takes less than 2 minutes.</p>
-                <button className={"last-btn"}  onClick={()=>{
-                    setNavB(true)
-                }}>Create Account</button>
-                <button className={"last-btn"} style={{left:"350px",backgroundColor:""}} onClick={()=>{
-                    setNavB(false)
-                }}>Staff Portal</button>
+
+                <Link to="/createPortal">
+                    <button className={"last-btn"}  onClick={()=>{
+                        setNavB(true)
+                    }}>Create Account</button>
+
+                </Link>
+
+                <Link to={"/staffPortal"}>
+                    <button className={"last-btn"} style={{left:"350px",backgroundColor:""}} onClick={()=>{
+                        setNavB(false)
+                    }}>Staff Portal</button>
+
+                </Link>
+
+
 
                 {navB?(
-                    <button className={"last-btn"} style={{backgroundColor:"#3B82F6",color:"white"}}>Create Account</button>
+
+                    <Link to={"/createPortal"}>
+                        <button className={"last-btn"} style={{backgroundColor:"#3B82F6",color:"white"}}>Create Account</button>
+
+                    </Link>
+
+
 
                 ):(
-                    <button className={"last-btn"} style={{left:"350px",backgroundColor:"#3B82F6",color:"white"}}>Staff Portal</button>
+                    <Link to={"/staffPortal"}>
+                        <button className={"last-btn"} style={{left:"350px",backgroundColor:"#3B82F6",color:"white"}}>Staff Portal</button>
+
+                    </Link>
+
 
                 )}
 

@@ -316,10 +316,12 @@
     border-radius: 5px;
     border: 1px solid #4B5563;
     font-weight: bold;
+
 }
 .last-btn:hover{
     cursor: pointer;
 }
+
 .box14{
     position:relative;
     height: 150px;
@@ -703,6 +705,82 @@
 }
 .login-dash:active {
     transform: scale(0.95);
+}
+.create-portalbox1{
+    position: relative;
+    top: 30px;
+    animation: fadeInUp 0.9s forwards;
+
+}
+.create-portalbox1 p{
+    color: #6B7280;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+
+    font-size: 14px;
+
+}
+.create-portalbox1 h1{
+    color: #1F2937;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+
+
+}
+.create-portalbox2{
+    position:absolute;
+    top: 170px;
+
+    height: 430px;
+    width: 800px;
+    left: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    animation: fadeInUp 0.9s forwards;
+}
+.cards{
+    position: relative;
+    background-color: white;
+    height: 300px;
+    width: 400px;
+    bottom: 65px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.card-header{
+    position: absolute;
+    bottom: 150px;
+    font-family: 'Inter', sans-serif;
+
+    height: 30px;
+    width: 180px;
+    text-align: center;
+}
+.card-body{
+    position: absolute;
+    background-color:#3B82F6;
+    height: 40px;
+    border-radius: 5px;
+    top: 230px;
+    right: 10px;
+    width: 160px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+
+}
+.cards:hover{
+    transform: scale(1.2) translateX(-2px);
+}
+.cards:active{
+    transform: scale(0.95);
+}
+.cards * {
+    pointer-events: none;
 }
 
 
