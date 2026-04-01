@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./receptionist.css";
 
 // ── Icons ──────────────────────────────────────────────────────────────────────
@@ -67,6 +68,7 @@ const MAX_ATTEMPTS = 3;
 
 // ── Login Form ─────────────────────────────────────────  ────────────────────────
 export default function ReceptionistLogin({ onLoginSuccess, onBack }) {
+  const navigate = useNavigate();
   const [employeeId, setEmployeeId]     = useState("");
   const [password, setPassword]         = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -97,12 +99,11 @@ export default function ReceptionistLogin({ onLoginSuccess, onBack }) {
       );
 
       if (match) {
-        // Success — pass user info up to parent/router
+        // Success — navigate to Receptionist Dashboard
         if (onLoginSuccess) {
           onLoginSuccess({ id: employeeId.trim(), role: "receptionist" });
-        } else {
-          alert(`Welcome, ${employeeId}! Redirecting to Receptionist Dashboard…`);
         }
+        navigate("/receptionist-dashboard", { state: { receptionistId: employeeId.trim() } });
       } else {
         const newAttempts = attempts + 1;
         setAttempts(newAttempts);
