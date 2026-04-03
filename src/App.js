@@ -4,6 +4,7 @@ import {Routes,Route} from "react-router-dom";
 import PatientLogin from "./components/PatientLogin";
 import CreatePortal from "./components/CreatePortal";
 import StaffPortal from "./components/StaffPortal";
+import DoctorRegister from "./components/DoctorRegister";
 
 function App(){
   return (
@@ -14,6 +15,7 @@ function App(){
               <Route path= "/patientLogin" element={<PatientLogin/>} />
               <Route path="/createPortal" element={<CreatePortal/>} />
               <Route path="/staffPortal" element={<StaffPortal/>} />
+              <Route path="/doctorRegister" element={<DoctorRegister/>} />
           </Routes>
 
 

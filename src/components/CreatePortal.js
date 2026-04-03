@@ -120,7 +120,9 @@ function CreatePortal() {
 
 
                     </button>
-                    <button className={"cards"}>
+                    <button className={"cards"} onClick={()=>{
+                        navigate("/doctorRegister");
+                    }}>
                         <div style={{
                             backgroundColor: "#dcfce7",
                             borderRadius: "50%",
