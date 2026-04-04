@@ -784,12 +784,13 @@
 }
 .dbox1{
     position: relative;
-    height: 700px;
+    height: 1000px;
     width: 450px;
     background-color: white;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     border: none;
+
 
 }
 .dbox-heading h1{
@@ -805,6 +806,20 @@
     position:relative;
     bottom: 15px;
     font-weight: bold;
+}
+.dbox2{
+    position:relative;
+
+
+
+    height: 450px;
+    width: 400px;
+    bottom: 80px;
+    left: 20px;
+    border-top: #6B7280 1px solid;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
 }
 
 
