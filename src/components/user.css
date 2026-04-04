@@ -790,12 +790,14 @@
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     border: none;
+    animation: fadeInUp 0.9s forwards;
 
 
 }
 .dbox-heading h1{
     font-family: 'Inter', sans-serif;
     color: #1F2937;
+    animation: fadeInUp 0.9s forwards;
 
 
 }
@@ -806,12 +808,10 @@
     position:relative;
     bottom: 15px;
     font-weight: bold;
+    animation: fadeInUp 0.9s forwards;
 }
 .dbox2{
     position:relative;
-
-
-
     height: 450px;
     width: 400px;
     bottom: 80px;
@@ -820,6 +820,10 @@
     border-right: none;
     border-left: none;
     border-bottom: none;
+}
+.doc-sub:active{
+    transform: scale(0.95);
+
 }
 
 

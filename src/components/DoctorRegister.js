@@ -1,10 +1,16 @@
 import React, {useState} from 'react'
-import {Heart} from "lucide-react";
+import {AlertCircle, CheckCircle, Clock, Heart, Shield} from "lucide-react";
 import {Link} from "react-router-dom";
 import { IdCard } from "lucide-react";
 import { Upload } from "lucide-react";
+import { HelpCircle } from "lucide-react";
+
 
 function DoctorRegister() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 
     const [navB  ,setNavB  ] = useState(true);
     const [selected, setSelected] = useState([]);
@@ -81,13 +87,14 @@ function DoctorRegister() {
             <div className="box16" style={{
                 background:"#F3F4F6",
                 gap:"40px",
-                height:"1300px"
+                height:"1500px"
             }}>
            <div className="dbox1" style={{
+               bottom:"100px"
 
            }}>
 
-               <IdCard size={20} color="#3b82f6" style={{
+               <IdCard size={22} color="#3b82f6" style={{
                    position: "relative",
                    top:"20px",
                    left:"30px",
@@ -622,7 +629,7 @@ function DoctorRegister() {
                    borderBottomRightRadius:"5px",
                    borderBottomLeftRadius:"5px",
                }}>
-                   <button style={{
+                   <button className={"doc-sub"} style={{
                        position:"relative",
                        backgroundColor:"#3B82F6",
                        width:"400px",
@@ -633,6 +640,7 @@ function DoctorRegister() {
                        color:"white",
                        fontFamily:"sans-serif",
                        fontWeight:"bold",
+                       cursor:"pointer",
 
                    }}>
                        Submit for verification
@@ -660,17 +668,153 @@ function DoctorRegister() {
 
                 <div className="dbox1" style={{
                     background:"#E6F0FF",
-                    height:"400px",
+                    height:"450px",
                     width:"250px",
-                    bottom:"370px",
+                    bottom:"440px",
 
                 }}>
+                    <Shield size={20} color="#007BFF"  style={{
+                        position:"relative",
+                        left:"10px",
+                        top:"10px",
+                    }}/>
+                    <h5 style={{
+                        fontFamily:"sans-serif",
+                        color:"#007BFF",
+                        fontSize:"14px",
+                        fontWeight:"bold",
+                        position:"relative",
+                        bottom:"34px",
+                        left:"35px",
+                    }}>Trust & Verification</h5>
+                    <p style={
+                        {
+                            fontFamily:"sans-serif",
+                            fontSize:"12px",
+                            position:"relative",
+                            bottom:"40px",
+                            left:"10px",
+                            color:"#1F2937",
+                        }
+                    }>To maintain the intergrity of our medical network all registrations undergo a rigorous secondary review </p>
+                    <Clock size={22} color="#1F2937" style={{
+                        position:"relative",
+                        bottom:"30px",
+                        left:"10px",
+                    }} />
+                    <h5 style={{
+                        fontFamily:"sans-serif",
+                        color:"#1F2937",
+                        fontSize:"14px",
+                        fontWeight:"bold",
+                        position:"relative",
+                        bottom:"77px",
+                        left:"35px",
+                    }}>Review Timeline</h5>
+                    <p style={
+                        {
+                            fontFamily:"sans-serif",
+                            fontSize:"12px",
+                            position:"relative",
+                            bottom:"85px",
+                            left:"10px",
+                            color:"#6B7280",
+                        }
+                    }>
+                        Standard review takes 24-48 business <br/>hours.
+
+                        You will receive an email once your <br/> credentials have been cross-referenced <br/>
+                        with national boards
+                    </p>
+                    <div style={{
+                        position:"relative",
+                        height:"120px",
+                        width:"220px",
+                        left:"10px",
+                        bottom:"70px",
+                        borderTop:"1px solid #6B7280",
+                        borderBottom:"1px solid #6B7280",
+
+                    }}>
+                    </div>
+                    <CheckCircle size={22} color="#1F2937" style={{
+                        position:"relative",
+                        bottom:"180px",
+                        left:"10px",
+                    }} />
+                    <h5 style={{
+                        fontFamily:"sans-serif",
+                        color:"#1F2937",
+                        fontSize:"14px",
+                        fontWeight:"bold",
+                        position:"relative",
+                        bottom:"227px",
+                        left:"35px",
+                    }}>Board Check</h5>
+                    <p style={
+                        {
+                            fontFamily:"sans-serif",
+                            fontSize:"12px",
+                            position:"relative",
+                            bottom:"230px",
+                            left:"10px",
+                            color:"#6B7280",
+                        }
+                    }>
+                       We automatically verify NPI and state <br/>
+                        license status through official regulatory database intergrations
+                    </p>
+                    <div style={{
+                        position:"relative",
+                        height:"80px",
+                        width:"220px",
+                        left:"10px",
+                        backgroundColor:"#F3F4F6",
+                        boxShadow:"0px 0px 3px rgba(0, 0, 0, 0.2)",
+                        borderRadius:"5px",
+                        bottom:"210px",
+                    }}>
+                        <AlertCircle size={15} color="#007BFF" style={{
+                            position:"absolute",
+                            left:"10px",
+                            top:"10px",
+                        }} />
+                        <h6 style={
+                            {
+                                fontFamily:"sans-serif",
+                                fontSize:"10px",
+                                position:"relative",
+                                left:"40px",
+                                top:"10px",
+                            }
+                        }>HIPPA NOTICE</h6>
+                        <p style={
+                            {
+                                fontFamily:"sans-serif",
+                                fontSize:"10px",
+                                position:"relative",
+                                bottom:"10px",
+                                left:"40px",
+                                color:"#6B7280",
+                            }
+                        }>
+                            We automatically verify NPI and state <br/>
+                            license status through official regulatory <br/>
+                            database intergrations
+                        </p>
 
 
+                    </div>
 
 
 
                 </div>
+
+
+
+
+
+
                 <div  className={"dbox-heading"} style={{
 
                     height:"100px",
@@ -687,7 +831,45 @@ function DoctorRegister() {
                 </div>
 
 
+
             </div>
+            <div style={{
+                position:"relative",
+                top:"650px",
+                left:"750px",
+                height:"100px",
+                width:"250px",
+
+            }}>
+                <HelpCircle size={30} color="#6B7280" style={{
+                    position:"relative",
+                    left:"100px",
+                }}  />
+                <h5 style={{
+                    fontFamily:"sans-serif",
+                    fontSize:"12px",
+                    position:"relative",
+                    bottom:"20px",
+                    textAlign:"center",
+                    color:"#1F2937",
+                }}>Need enrollment assistance?</h5>
+                <p style={{
+                    fontFamily:"sans-serif",
+                    fontSize:"12px",
+                    position:"relative",
+                    bottom:"35px",
+                    textAlign:"center",
+                    color:"#6B7280",
+
+                }}> Our specialist onboarding team is available 24/7 to help you complete your profile</p>
+
+            </div>
+
+
+
+
+
+
             <div className={'box13'} style={{marginTop:"1300px"}}>
                 <div className={"box14"}>
                     <div className="logo" style={{position:"relative",right:"80px",}}>
@@ -719,7 +901,7 @@ function DoctorRegister() {
                 </div>
 
             </div>
-            <div className={'box15'} style={{top:"1585px",left:"10px"}}>
+            <div className={'box15'} style={{top:"1685px",left:"10px"}}>
                 <p>2026 @PMT.All rights reserved</p>
 
             </div>
