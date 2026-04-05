@@ -7,13 +7,61 @@ import { HelpCircle } from "lucide-react";
 
 
 function DoctorRegister() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+
 
     const [navB  ,setNavB  ] = useState(true);
     const [selected, setSelected] = useState([]);
+    const [fullName, setFullName] = useState("");
+    const [professionalTitle, setProfessionalTitle] = useState("");
+    const [clinic, setClinic] = useState("");
+    const [medicalLicenseNumber, setMedicalLicenseNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
+
+
+
+    const doctorRegister = async () => {
+        const formData = new FormData();
+        formData.append("doctor[full_name]", fullName);
+        formData.append("doctor[professional_title]", professionalTitle);
+        formData.append("doctor[clinic]", clinic);
+        formData.append("doctor[medical_license_number]", medicalLicenseNumber);
+        formData.append("doctor[email]", email);
+        formData.append("doctor[phone_number]", phoneNumber);
+        formData.append("doctor[password]", password);
+        formData.append("doctor[password_confirmation]", passwordConfirmation);
+
+
+        selected.forEach((item) => {
+            formData.append("doctor[specialties][]", item);
+        });
+
+
+        if (file) {
+            formData.append("doctor[document]", file);
+        }
+
+        try {
+            const response = await fetch("http://localhost:3000/api/doctor", {
+                method: "POST",
+                body: formData,
+
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+              alert(data.message);
+            } else {
+                alert(data.errors);
+            }
+        } catch (error) {
+            console.error("Error submitting form:", error);
+        }
+    };
+
 
     const [file, setFile] = useState(null);
     const handleFileChange = (e) => {
@@ -169,6 +217,8 @@ function DoctorRegister() {
                            border:"none",
                            boxShadow:"0px 0px 3px rgba(0, 0, 0, 0.2)",
 
+                       }} value={fullName} onChange={(e)=>{
+                           setFullName(e.target.value);
                        }}/>
 
                     </div>
@@ -193,6 +243,8 @@ function DoctorRegister() {
                             border:"none",
                             boxShadow:"0px 0px 3px rgba(0, 0, 0, 0.2)",
 
+                        }} value={professionalTitle} onChange={(e)=>{
+                            setProfessionalTitle(e.target.value);
                         }}/>
 
                     </div>
@@ -230,6 +282,8 @@ function DoctorRegister() {
                                border:"none",
                                boxShadow:"0px 0px 3px rgba(0, 0, 0, 0.2)",
 
+                           }} value={clinic} onChange={(e)=>{
+                               setClinic(e.target.value);
                            }}/>
 
                        </div>
@@ -254,6 +308,8 @@ function DoctorRegister() {
                                border:"none",
                                boxShadow:"0px 0px 3px rgba(0, 0, 0, 0.2)",
 
+                           }} value={medicalLicenseNumber} onChange={(e)=>{
+                               setMedicalLicenseNumber(e.target.value);
                            }}/>
 
                        </div>
@@ -405,6 +461,8 @@ function DoctorRegister() {
                                border:"none",
                                boxShadow:"0px 0px 3px rgba(0, 0, 0, 0.2)",
 
+                           }} value={email} onChange={(e)=>{
+                               setEmail(e.target.value);
                            }}/>
 
                        </div>
@@ -429,6 +487,8 @@ function DoctorRegister() {
                                border:"none",
                                boxShadow:"0px 0px 3px rgba(0, 0, 0, 0.2)",
 
+                           }} value={phoneNumber} onChange={(e)=>{
+                               setPhoneNumber(e.target.value);
                            }}/>
 
                        </div>
@@ -466,7 +526,9 @@ function DoctorRegister() {
                                border:"none",
                                boxShadow:"0px 0px 3px rgba(0, 0, 0, 0.2)",
 
-                           }} type={"password"}/>
+                           }} type={"password"} value={password} onChange={(e)=>{
+                               setPassword(e.target.value);
+                           }}/>
 
                        </div>
 
@@ -490,7 +552,9 @@ function DoctorRegister() {
                                border:"none",
                                boxShadow:"0px 0px 3px rgba(0, 0, 0, 0.2)",
 
-                           }} type={"password"}/>
+                           }} type={"password"} value={passwordConfirmation} onChange={(e)=>{
+                               setPasswordConfirmation(e.target.value);
+                           }}/>
 
                        </div>
 
@@ -642,7 +706,7 @@ function DoctorRegister() {
                        fontWeight:"bold",
                        cursor:"pointer",
 
-                   }}>
+                   }} onClick={doctorRegister}>
                        Submit for verification
 
 
