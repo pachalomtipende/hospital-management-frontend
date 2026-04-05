@@ -5,7 +5,6 @@ import { IdCard } from "lucide-react";
 import { Upload } from "lucide-react";
 import { HelpCircle } from "lucide-react";
 
-
 function DoctorRegister() {
 
 
@@ -19,6 +18,8 @@ function DoctorRegister() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
+
+    const [verifyEmail, setVerifyEmail] = useState(false);
 
 
 
@@ -45,6 +46,7 @@ function DoctorRegister() {
         }
 
         try {
+
             const response = await fetch("http://localhost:3000/api/doctor", {
                 method: "POST",
                 body: formData,
@@ -60,6 +62,8 @@ function DoctorRegister() {
         } catch (error) {
             console.error("Error submitting form:", error);
         }
+        setVerifyEmail(true)
+
     };
 
 
@@ -93,8 +97,10 @@ function DoctorRegister() {
     const handleRemove = (item) => {
         setSelected(selected.filter((s) => s !== item));
     };
+
     return(
         <div>
+
             <div className="box1">
                 <div className="logo">
                     <div className="icon">
@@ -107,10 +113,14 @@ function DoctorRegister() {
                     <button className={"home-button"} style={{color:"#6B7280"}}>Home</button>
 
                 </Link>
+                <Link to={"/doctorVerification"}>
+                    <button className={"nav-button"} onClick={()=>{
+                        setNavB(false);
+                    }}>Log in</button>
 
-                <button className={"nav-button"} onClick={()=>{
-                    setNavB(false);
-                }}>Log in</button>
+                </Link>
+
+
 
                 <Link to={"/patientRegister"}>
                     <button className={"nav-button"} style={{left:'1000px'}} onClick={()=>{
@@ -693,25 +703,28 @@ function DoctorRegister() {
                    borderBottomRightRadius:"5px",
                    borderBottomLeftRadius:"5px",
                }}>
-                   <button className={"doc-sub"} style={{
-                       position:"relative",
-                       backgroundColor:"#3B82F6",
-                       width:"400px",
-                       left:"20px",
-                       border:"none",
-                       borderRadius:"5px",
-                       height:"40px",
-                       color:"white",
-                       fontFamily:"sans-serif",
-                       fontWeight:"bold",
-                       cursor:"pointer",
 
-                   }} onClick={doctorRegister}>
-                       Submit for verification
+                       <button className={"doc-sub"} style={{
+                           position:"relative",
+                           backgroundColor:"#3B82F6",
+                           width:"400px",
+                           left:"20px",
+                           border:"none",
+                           borderRadius:"5px",
+                           height:"40px",
+                           color:"white",
+                           fontFamily:"sans-serif",
+                           fontWeight:"bold",
+                           cursor:"pointer",
+
+                       }} onClick={doctorRegister}>
+                           Submit for verification
 
 
 
-                   </button>
+                       </button>
+
+
                    <p style={{
                        fontFamily:"sans-serif",
                        fontSize:"10px",
@@ -929,11 +942,6 @@ function DoctorRegister() {
 
             </div>
 
-
-
-
-
-
             <div className={'box13'} style={{marginTop:"1300px"}}>
                 <div className={"box14"}>
                     <div className="logo" style={{position:"relative",right:"80px",}}>
@@ -969,6 +977,34 @@ function DoctorRegister() {
                 <p>2026 @PMT.All rights reserved</p>
 
             </div>
+            {verifyEmail && (
+                <div
+                    className="verification-notice"
+                    style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        background: "white",
+                        padding: "40px 30px",
+                        borderRadius: "12px",
+                        boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
+                        width: "400px",
+                        textAlign: "center",
+                        fontFamily: "sans-serif",
+                        color: "#1F2937",
+                        zIndex: 10,
+                    }}
+                >
+                    <h2 style={{ fontSize: "20px", marginBottom: "15px" }}>
+                        Verification Under Review
+                    </h2>
+                    <p style={{ fontSize: "16px", lineHeight: "1.5", color: "#4B5563" }}>
+                        Your verification request is being reviewed. Please allow up to 2 business days for processing. You will receive a confirmation message once the verification is complete.
+                    </p>
+                </div>
+            )}
+
 
 
         </div>
