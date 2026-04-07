@@ -187,7 +187,8 @@ const PatientPortal = () => {
             </div>
             <div>
               <h1 className="result-heading">{getPriorityLabel(appt.priority_level)}</h1>
-              <p className="result-sub">AI Priority Score: <strong>{appt.priority_score}/100</strong> · Detected: {(appt.symptoms || []).join(', ')}</p>
+              <p className="result-sub">Detected: {(appt.symptoms || []).join(', ')}</p>
+
             </div>
           </div>
 

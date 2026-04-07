@@ -83,11 +83,10 @@ const SymptomIntakeModal = ({ isOpen, onClose, onSuccess }) => {
               <span className="result-badge" style={{ background: priorityColor }}>
                 {getPriorityLabel(appointment.priority_level)}
               </span>
-              <span className="result-score">Score: {appointment.priority_score}/100</span>
-            </div>
-            <p className="result-symptoms">
+            <p className="result-symptoms" style={{margin: 0}}>
               <strong>Detected:</strong> {(appointment.symptoms || []).join(', ')}
             </p>
+
           </div>
 
           {/* First Aid Advice */}
