@@ -6,6 +6,7 @@ import CreatePortal from "./components/CreatePortal";
 import StaffPortal from "./components/StaffPortal";
 import DoctorRegister from "./components/DoctorRegister";
 import DoctorVerification from "./components/DoctorVerification";
+import DoctorLogin   from "./components/DoctorLogin";
 
 function App(){
   return (
@@ -18,6 +19,7 @@ function App(){
               <Route path="/staffPortal" element={<StaffPortal/>} />
               <Route path="/doctorRegister" element={<DoctorRegister/>} />
               <Route path="/doctorVerification" element={<DoctorVerification/>}/>
+              <Route path="/doctorLogin" element={<DoctorLogin/>} />
           </Routes>
 
 

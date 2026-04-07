@@ -825,6 +825,9 @@
     transform: scale(0.95);
 
 }
+.doc-login-btn:active{
+    transform: scale(0.95);
+}
 
 
 

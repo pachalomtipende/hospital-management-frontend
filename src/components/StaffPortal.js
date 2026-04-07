@@ -120,7 +120,9 @@ function StaffPortal() {
 
 
                     </button>
-                    <button className={"cards"}>
+                    <button className={"cards"} onClick={()=>{
+                        navigate("/doctorLogin");
+                    }}>
                         <div style={{
                             backgroundColor: "#dcfce7",
                             borderRadius: "50%",
