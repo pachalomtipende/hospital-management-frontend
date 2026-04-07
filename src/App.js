@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import './App.css';
 import AIPriorityQueue from './components/AIPriorityQueue';
 import SymptomIntakeModal from './components/SymptomIntakeModal';
+import PatientPortal from './components/PatientPortal';
 
 function App() {
   const [isIntakeOpen, setIsIntakeOpen] = useState(false);
+  const [activePage, setActivePage] = useState('queue');
 
   const handleIntakeSuccess = () => {
     setIsIntakeOpen(false);
-    // Trigger queue refresh via the global exposed function (or a better way like context)
     if (window.refreshQueue) {
       window.refreshQueue();
     }
@@ -26,22 +27,34 @@ function App() {
         </div>
         
         <div className="sidebar-nav">
-          <a href="#" className="nav-item active">
+          <button
+            className={`nav-item ${activePage === 'queue' ? 'active' : ''}`}
+            onClick={() => setActivePage('queue')}
+          >
             <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
             Priority Queue
-          </a>
-          <a href="#" className="nav-item">
+          </button>
+          <button
+            className={`nav-item ${activePage === 'doctor' ? 'active' : ''}`}
+            onClick={() => setActivePage('doctor')}
+          >
             <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
             Doctor Hub
-          </a>
-          <a href="#" className="nav-item">
+          </button>
+          <button
+            className={`nav-item ${activePage === 'reception' ? 'active' : ''}`}
+            onClick={() => setActivePage('reception')}
+          >
             <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
             Reception/Schedule
-          </a>
-          <a href="#" className="nav-item">
+          </button>
+          <button
+            className={`nav-item ${activePage === 'patient' ? 'active' : ''}`}
+            onClick={() => setActivePage('patient')}
+          >
             <svg className="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
             Patient Intake
-          </a>
+          </button>
         </div>
 
         <div className="sidebar-footer">
@@ -55,7 +68,9 @@ function App() {
       {/* Main Content Area */}
       <div className="main-content">
         <div className="topbar">
-          <div className="topbar-left">Emergency Info</div>
+          <div className="topbar-left">
+            {activePage === 'patient' ? '🏥 Patient Portal' : 'Emergency Info'}
+          </div>
           <input type="text" className="search-bar" placeholder="Search patients..." />
           <div className="topbar-right flex items-center" style={{gap: '16px'}}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" strokeWidth="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
@@ -63,8 +78,27 @@ function App() {
           </div>
         </div>
 
-        <div className="content-area">
-          <AIPriorityQueue onOpenIntake={() => setIsIntakeOpen(true)} />
+        <div className="content-area" style={{ padding: activePage === 'patient' ? '0' : '32px' }}>
+          {activePage === 'queue' && (
+            <AIPriorityQueue onOpenIntake={() => setIsIntakeOpen(true)} />
+          )}
+          {activePage === 'patient' && (
+            <PatientPortal />
+          )}
+          {activePage === 'doctor' && (
+            <div style={{textAlign: 'center', marginTop: '80px', color: 'var(--text-muted)'}}>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{margin: '0 auto 16px', display: 'block'}}><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <h2 style={{fontWeight: 600, fontSize: '20px', marginBottom: '8px'}}>Doctor Hub</h2>
+              <p>This module will be built by the Doctor team member.</p>
+            </div>
+          )}
+          {activePage === 'reception' && (
+            <div style={{textAlign: 'center', marginTop: '80px', color: 'var(--text-muted)'}}>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{margin: '0 auto 16px', display: 'block'}}><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              <h2 style={{fontWeight: 600, fontSize: '20px', marginBottom: '8px'}}>Reception / Schedule</h2>
+              <p>This module will be built by the Receptionist team member.</p>
+            </div>
+          )}
         </div>
       </div>
 
