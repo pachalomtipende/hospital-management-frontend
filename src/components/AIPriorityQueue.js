@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchQueue } from '../api';
+import { fetchQueue, deleteAppointment, clearAllAppointments } from '../api';
 import './AIPriorityQueue.css';
 
 const AIPriorityQueue = ({ onOpenIntake }) => {
@@ -18,6 +18,28 @@ const AIPriorityQueue = ({ onOpenIntake }) => {
       console.error(err);
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleDelete = async (id, confirmFirst = false) => {
+    if (confirmFirst && !window.confirm("Are you sure you want to remove this patient from the queue?")) return;
+    try {
+      await deleteAppointment(id);
+      loadQueue();
+      if (selectedPatient?.id === id) setSelectedPatient(null);
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
+  const handleClearAll = async () => {
+    if (!window.confirm("WARNING: This will permanently delete ALL patients from the test queue. Are you sure?")) return;
+    try {
+      await clearAllAppointments();
+      loadQueue();
+      setSelectedPatient(null);
+    } catch (err) {
+      alert(err.message);
     }
   };
 
@@ -56,8 +78,9 @@ const AIPriorityQueue = ({ onOpenIntake }) => {
           <p className="page-subtitle">Real-time triage management powered by CareConnect AI.</p>
         </div>
         <div className="header-actions">
-          <button className="btn-outline-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+          <button className="btn-outline-danger" title="Clear All Test Patients" onClick={handleClearAll}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '6px'}}><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+            Reset Queue
           </button>
           <button className="btn-primary flex items-center" onClick={onOpenIntake}>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{marginRight: '6px'}}><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
@@ -160,7 +183,7 @@ const AIPriorityQueue = ({ onOpenIntake }) => {
               </div>
               <div className="score-details">
                 <div className="score-rank">Priority Ranking #{queue.findIndex(p => p.id === selectedPatient.id) + 1}</div>
-                <div className="score-percentile">Top urgency percentile</div>
+                <div className="score-percentile">User Severity: <span style={{textTransform: 'capitalize', fontWeight: 'bold'}}>{selectedPatient.severity || 'Low'}</span></div>
               </div>
             </div>
 
@@ -181,13 +204,21 @@ const AIPriorityQueue = ({ onOpenIntake }) => {
             </div>
 
             <div className="action-buttons">
-              <button className="btn-primary full-width flex items-center justify-between" style={{marginBottom: '10px'}}>
+              <button 
+                className="btn-primary full-width flex items-center justify-between" 
+                style={{marginBottom: '10px'}}
+                onClick={() => handleDelete(selectedPatient.id)}
+              >
                 Assign to Available Doctor
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </button>
-              {selectedPatient.priority_level === 'HIGH' && (
-                <button className="btn-outline-danger full-width">Escalate to Trauma Team</button>
-              )}
+              <button 
+                className="btn-outline-danger full-width flex items-center justify-center gap-2"
+                onClick={() => handleDelete(selectedPatient.id, true)}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+                Remove Manually
+              </button>
             </div>
           </div>
         )}
