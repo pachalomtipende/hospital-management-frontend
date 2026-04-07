@@ -144,3 +144,96 @@
   accent-color: var(--primary-blue);
   margin: 0;
 }
+
+/* --- Results Phase Styles --- */
+
+.modal-results {
+  width: 550px;
+}
+
+.result-summary {
+  background: var(--bg-main);
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 24px;
+}
+
+.result-priority {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.result-badge {
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.result-score {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.result-symptoms {
+  font-size: 14px;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.advice-section {
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.advice-title {
+  color: #10b981;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  display: flex;
+  align-items: center;
+}
+
+.advice-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.advice-card {
+  background: white;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid #10b981;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.advice-symptom {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-main);
+  text-transform: capitalize;
+  margin-bottom: 4px;
+}
+
+.advice-text {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.advice-disclaimer {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 16px 0 0 0;
+  text-align: center;
+  font-style: italic;
+}
