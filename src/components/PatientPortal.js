@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { createAppointment } from '../api';
 import './PatientPortal.css';
 
+import DoctorPortrait from '../assets/images/doctor_2.jpg';
+import TeamLab from '../assets/images/team_1.jpg';
+
 const SYMPTOM_CATEGORIES = [
   {
     id: 'chest',
@@ -246,8 +249,13 @@ const PatientPortal = () => {
             ⏱ Avg. response: 2 mins &nbsp;·&nbsp; 🔒 Secure & Confidential
           </div>
         </div>
-        <div className="portal-hero-card">
-          <div className="portal-hero-card-inner">
+        
+        {/* Updated Hero Imagery Section */}
+        <div className="portal-hero-images-container">
+          <img src={TeamLab} alt="Medical Team" className="hero-img-main" />
+          <img src={DoctorPortrait} alt="Friendly Doctor" className="hero-img-float" />
+          
+          <div className="portal-hero-card-inner overlay-card">
             <div className="live-dot"></div>
             <div>
               <div className="portal-hero-card-title">Live System Status</div>
